@@ -24,12 +24,9 @@ function createGalleryGrid(galleryItems) {
     .join('');
 }
 
-itemsLinks.forEach(link =>
-    link.addEventListener('click', (event) => {
-        event.preventDefault();
-    })
-);
-
+galleryContainer.addEventListener('click', (event) => {
+    event.preventDefault();
+})
 
 const gallery = new SimpleLightbox('.gallery a', {
     captions: true,
@@ -39,4 +36,3 @@ const gallery = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
 });
 
-console.log(gallery.captionsData);

@@ -26,19 +26,18 @@ function createGalleryGrid(galleryItems) {
     .join('');
 }
 
-itemsLinks.forEach(link =>
-    link.addEventListener('click', (event) => {
-    event.preventDefault();
-}));
 
 galleryContainer.addEventListener('click', onImgClick);
-galleryContainer.addEventListener('keydown', onEscKeyPress);
 
 function onImgClick(event) {
+    event.preventDefault();
+
     if (!event.target.classList.contains("gallery__image")) return;
     const bigImg = basicLightbox.create(`
 		<img class="bigImg" width="1400" height="900" src="${event.target.dataset.source}">
 	`).show();
+
+    galleryContainer.addEventListener('keydown', onEscKeyPress);
     onEscKeyPress();
 }
 
@@ -48,4 +47,6 @@ function onEscKeyPress(event) {
 
     const modal = document.querySelector('.basicLightbox');
     modal.remove();
+    galleryContainer.removeEventListener('keydown', onEscKeyPress);
 }
+
